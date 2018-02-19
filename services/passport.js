@@ -25,26 +25,17 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      // we'll come back to update callbackURL route
       callbackURL: '/auth/google/callback',
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({
-        googleId: profile.id
-      }).then(existingUser => {
-        if (existingUser) {
-          // done(error, existingUser);
-          return done(null, existingUser);
-        } else {
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
-      // any time we reach out to our MongoDB in any form, we're initiating an
-      // async action. User.findOne returns a promise.
-      // this creates new instance of user but doesn't yet persist it to the DB until we call .save() at the end
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) {
+        // done(error, existingUser);
+        return done(null, existingUser);
+      }
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );
