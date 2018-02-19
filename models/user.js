@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 
 // Can add in properties to schemas when we need to
 const userSchema = new Schema({
-  googleId: String
+  googleId: String,
+  credits: { type: Number, default: 0 }
 });
 
 // Mongoose will not override existing collections, only create if it doesn't exist.
