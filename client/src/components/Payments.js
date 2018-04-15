@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import StripeCheckout from 'react-stripe-checkout';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import * as actions from "../actions";
 
 class Payments extends Component {
   render() {
@@ -20,4 +20,5 @@ class Payments extends Component {
   }
 }
 
+// actions -- mapDispatchToProps(dispatch => {return { actions: bindActionCreators(addNewTodo, dispatch)}})
 export default connect(null, actions)(Payments);

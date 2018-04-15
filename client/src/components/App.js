@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 // BrowserRouter is brains of react-router
 // Route sets up rule for a given route
 
-import Header from './Header';
-import Landing from './Landing';
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import Dashboard from "./Dashboard";
+import Header from "./Header";
+import Landing from "./Landing";
+import SurveyNew from "./surveys/SurveyNew";
 
 class App extends Component {
   componentDidMount() {
@@ -19,16 +19,14 @@ class App extends Component {
   render() {
     // browserRouter --> 1 child
     return (
-      <div className="container">
-        <BrowserRouter>
-          <div>
-            <Header />
-            <Route path="/" component={Landing} exact />
-            <Route path="/surveys" component={Dashboard} exact />
-            <Route path="/surveys/new" component={SurveyNew} />
-          </div>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Header />
+          <Route path="/" component={Landing} exact />
+          <Route path="/surveys" component={Dashboard} exact />
+          <Route path="/surveys/new" component={SurveyNew} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
