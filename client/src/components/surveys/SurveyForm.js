@@ -2,27 +2,15 @@ import React, { Component } from "react";
 // reduxForm function here is similar to "connect" helper in redux - allows component to communicated w/ Redux store. Field import is for rendering any type of traditional html form element.
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
+import fields from "./formFields";
 import SurveyField from "./SurveyField";
 import validateEmails from "../../utils/validateEmails";
 
 //handleSubmit function below is available from reduxForm
 
-const FIELDS = [
-  { name: "title", label: "Survey Title" },
-  { name: "subject", label: "Subject Line" },
-  {
-    name: "body",
-    label: "Email Body"
-  },
-  {
-    name: "emails",
-    label: "Recipient List"
-  }
-];
-
 class SurveyForm extends Component {
   renderFields(input, text) {
-    return FIELDS.map(field => {
+    return fields.map(field => {
       return (
         <Field
           component={SurveyField}
@@ -58,8 +46,8 @@ class SurveyForm extends Component {
 const validate = values => {
   const errors = {};
 
-  FIELDS.forEach(({ name }) => {
-    errors.emails = validateEmails(values.emails || "");
+  fields.forEach(({ name }) => {
+    errors.recipients = validateEmails(values.recipients || "");
 
     if (!values[name]) {
       errors[name] = `You must provide ${name}.`;
