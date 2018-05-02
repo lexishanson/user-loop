@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const Path = require("path-parser");
+const { URL } = require("url");
 const requireLogin = require("../middlewares/requireLogin");
 const requireCredits = require("../middlewares/requireCredits");
 const Mailer = require("../services/mailer");
@@ -35,10 +37,26 @@ module.exports = app => {
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();
-
       res.send(user);
     } catch (err) {
       res.status(422).send(err);
     }
+  });
+
+  app.post("/api/surveys/webhooks", (req, res) => {
+    //   const events = req.body.map(({ email, url }) => {
+    //     const pathname = new URL(url).pathname;
+    //     const p = new Path("/api/surveys/:surveyId/:choice");
+    //     const match = p.test(pathname);
+    //     return (
+    //       match && {
+    //         email,
+    //         surveyId: match.surveyId,
+    //         choice: match.choice
+    //       }
+    //     );
+    //   });
+    //   console.log(events);
+    console.log("hellooooo");
   });
 };
