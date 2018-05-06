@@ -13,7 +13,11 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && del-cli client/node_modules",
+<<<<<<< HEAD
     "webhook": "ngrok http --host-header=rewrite 3000"
+=======
+    "webhook": "./sendgrid_webhook.sh"
+>>>>>>> 7b6b36a70b70d0f2ab9b4593be5797169906ac3d
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +27,10 @@
     "cookie-session": "^2.0.0-beta.3",
     "del-cli": "^1.1.0",
     "express": "^4.16.2",
+<<<<<<< HEAD
     "localtunnel": "^1.9.0",
+=======
+>>>>>>> 7b6b36a70b70d0f2ab9b4593be5797169906ac3d
     "lodash": "^4.17.10",
     "mongoose": "^5.0.4",
     "node": "^9.5.0",
